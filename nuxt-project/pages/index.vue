@@ -1,6 +1,6 @@
-<template data-theme="light">
+<template>
     <div>
-        <h1 class="mt-10 bg-green-300 p-2 rounded-lg mx-10">Hi welcome to my world</h1>
-        <button class="btn btn-primary mt-10 ml-10">Click me</button>
+      <img src="/images/my-avatar.jpg" alt="My avatar" />
     </div>
-</template>
+  </template>
+  
