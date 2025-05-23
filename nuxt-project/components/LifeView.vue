@@ -6,8 +6,8 @@
     >
       ✕
     </button>
-    <h2 class="text-5xl font-serif mb-6">Fore Word</h2>
-    <p class="text-lg font-mono italic">Đây là phần nội dung lời mở đầu của bạn. Xin chào! 🌿</p>
+    <h2 class="text-5xl font-serif mb-6">Tôi thấy gì trên cuộc đời này</h2>
+    <p class="text-lg font-mono italic">Những câu chuyện mà tôi sẽ kể cậu nghe</p>
   </div>
 </template>
 
