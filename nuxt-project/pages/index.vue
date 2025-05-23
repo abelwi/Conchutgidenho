@@ -1,10 +1,16 @@
 <template>
   <div class="h-screen flex flex-col overflow-hidden relative">
-    <!-- Top section -->
+
+    <!-- Content always rendered behind -->
+    <div class="absolute inset-0 z-0">
+      <component :is="activeComponent" v-if="activeComponent" />
+    </div>
+
+    <!-- Top Curtain (slide up) -->
     <div
       class="h-1/2 bg-[url(/images/my-avatar.jpg)] bg-cover bg-no-repeat bg-[20%_30%] cursor-pointer transition-transform duration-[1200ms] z-10"
-      :class="{ '-translate-y-full': activePage !== null }"
-      @click="openPage('foreword')"
+      :class="{ '-translate-y-full': isCurtainOpen }"
+      @click="openCurtain('foreword')"
     >
       <div class="w-2/5 h-full inline-flex flex-col items-center justify-center space-y-7">
         <h1 class="font-serif text-5xl"><strong>Còn chút gì để nhớ?</strong></h1>
@@ -15,50 +21,46 @@
       </div>
     </div>
 
-    <!-- Bottom sections -->
+    <!-- Bottom Curtain (slide down) -->
     <div
-      class="flex flex-col flex-1 transition-transform duration-700 z-10"
-      :class="{ 'translate-y-full': activePage !== null }"
+      class="flex flex-col flex-1 transition-transform duration-[1200ms] z-10"
+      :class="{ 'translate-y-full': isCurtainOpen }"
     >
-      <div class="flex-1 bg-[#FFE8B9] flex items-center justify-center cursor-pointer" @click="openPage('cambodia')">
+      <div class="flex-1 bg-[#f8dda6] flex items-center justify-center cursor-pointer" @click="openCurtain('cambodia')">
         <p class="text-3xl font-serif tracking-wide">Cambodia Trip</p>
       </div>
-      <div class="flex-1 bg-[#F6CF81] flex items-center justify-center cursor-pointer" @click="openPage('life')">
+      <div class="flex-1 bg-[#F6CF81] flex items-center justify-center cursor-pointer" @click="openCurtain('life')">
         <p class="text-3xl font-serif tracking-wide">Tôi thấy gì trên cuộc đời này</p>
       </div>
-      <div class="flex-1 bg-[#F7D99C] flex items-center justify-center cursor-pointer" @click="openPage('memory')">
+      <div class="flex-1 bg-[#F7D99C] flex items-center justify-center cursor-pointer" @click="openCurtain('memory')">
         <p class="text-3xl font-serif tracking-wide">Còn chút gì để nhớ!?</p>
       </div>
     </div>
 
-    <!-- Always mounted component, faded with opacity -->
-    <div
-      v-if="activeComponent"
-      :class="[
-        'fixed inset-0 z-20 transition-opacity duration-1000 pointer-events-none',
-        showContent ? 'opacity-100 pointer-events-auto' : 'opacity-0',
-      ]"
+    <!-- Close button, only when curtain is open -->
+    <button
+      v-if="isCurtainOpen"
+      @click="closeCurtain"
+      class="absolute top-6 right-8 z-0 text-2xl font-bold text-gray-600 hover:text-black transition"
     >
-      <component :is="activeComponent" @close="closePage" />
-    </div>
+      ✕
+    </button>
+
   </div>
 </template>
 
 <script setup>
-import { ref, watch } from 'vue'
+import { ref } from 'vue'
 import Foreword from '~/components/Foreword.vue'
 import CambodiaTrip from '~/components/CambodiaTrip.vue'
 import LifeView from '~/components/LifeView.vue'
 import Memory from '~/components/Memory.vue'
 
-const activePage = ref(null)
+const isCurtainOpen = ref(false)
 const activeComponent = ref(null)
-const showContent = ref(false)
 
-const openPage = (page) => {
-  activePage.value = page
-  showContent.value = false
-
+function openCurtain(page) {
+  // Set content behind the curtain immediately
   switch (page) {
     case 'foreword':
       activeComponent.value = Foreword
@@ -74,18 +76,17 @@ const openPage = (page) => {
       break
   }
 
-  // Fade in content after small delay (during slide animation)
-  setTimeout(() => {
-    showContent.value = true
-  }, 200) // starts fade ~200ms after transition begins
+  // Open curtain right after
+  isCurtainOpen.value = true
 }
 
-const closePage = () => {
-  showContent.value = false
-  // Wait for fade out before resetting
+function closeCurtain() {
+  // Close the curtain
+  isCurtainOpen.value = false
+
+  // After curtain closes (match animation duration), remove content
   setTimeout(() => {
-    activePage.value = null
     activeComponent.value = null
-  }, 500)
+  }, 1200) // matches transition duration
 }
 </script>
