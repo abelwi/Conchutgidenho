@@ -16,7 +16,7 @@
     >
       <!-- Image Div (always included) -->
       <div
-        class="flex-1 bg-[url(/images/my-avatar.jpg)] bg-cover bg-no-repeat bg-[20%_30%] cursor-pointer"
+        class="h-full bg-[url(/images/my-avatar.jpg)] bg-cover bg-no-repeat bg-[20%_30%] cursor-pointer"
         @click="openCurtain('foreword')"
       >
         <div class="w-2/5 h-full inline-flex flex-col items-center justify-center space-y-7">
@@ -32,7 +32,7 @@
       <div
         v-for="topic in topCurtainTopics"
         :key="topic.id"
-        class="flex-1 flex items-center justify-center cursor-pointer"
+        class="flex items-center justify-center cursor-pointer h-56"
         :class="topic.bgColor"
         @click="openCurtain(topic.id)"
       >
@@ -43,13 +43,13 @@
     <!-- Bottom Curtain (topics below the clicked topic) -->
     <div
       v-if="remainingTopics.length > 0"
-      class="flex flex-col flex-1 transition-transform duration-[1200ms] z-10"
+      class="flex flex-col transition-transform duration-[1200ms] z-10 flex-1"
       :class="{ 'translate-y-full': isCurtainOpen }"
     >
       <div
         v-for="topic in remainingTopics"
         :key="topic.id"
-        class="flex-1 flex items-center justify-center cursor-pointer"
+        class="h-1/2 flex items-center justify-center cursor-pointer"
         :class="topic.bgColor"
         @click="openCurtain(topic.id)"
       >
