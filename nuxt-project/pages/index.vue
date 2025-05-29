@@ -8,15 +8,13 @@
     <!-- Top Curtain (image div + clicked topic + topics above it) -->
     <div
       class="transition-transform duration-[1200ms] z-10 flex flex-col"
-      :class="{
-        'h-1/2': remainingTopics.length > 0 && !isCurtainOpen,
-        'h-full': remainingTopics.length === 0 && !isCurtainOpen,
-        '-translate-y-full': isCurtainOpen,
-      }"
+      :style="{ height: topCurtainHeight }"
+      :class="{ '-translate-y-full': isCurtainOpen }"
     >
       <!-- Image Div (always included) -->
       <div
-        class="h-full bg-[url(/images/my-avatar.jpg)] bg-cover bg-no-repeat bg-[20%_30%] cursor-pointer"
+        class="bg-[url(/images/my-avatar.jpg)] bg-cover bg-no-repeat bg-[20%_30%] cursor-pointer"
+        :style="{ height: imageHeight }"
         @click="openCurtain('foreword')"
       >
         <div class="w-2/5 h-full inline-flex flex-col items-center justify-center space-y-7">
@@ -32,7 +30,8 @@
       <div
         v-for="topic in topCurtainTopics"
         :key="topic.id"
-        class="flex items-center justify-center cursor-pointer h-56"
+        class="flex items-center justify-center cursor-pointer"
+        :style="{ height: topicHeight }"
         :class="topic.bgColor"
         @click="openCurtain(topic.id)"
       >
@@ -43,13 +42,15 @@
     <!-- Bottom Curtain (topics below the clicked topic) -->
     <div
       v-if="remainingTopics.length > 0"
-      class="flex flex-col transition-transform duration-[1200ms] z-10 flex-1"
+      class="flex flex-col transition-transform duration-[1200ms] z-10"
+      :style="{ height: bottomCurtainHeight }"
       :class="{ 'translate-y-full': isCurtainOpen }"
     >
       <div
         v-for="topic in remainingTopics"
         :key="topic.id"
-        class="h-1/2 flex items-center justify-center cursor-pointer"
+        class="flex items-center justify-center cursor-pointer"
+        :style="{ height: topicHeight }"
         :class="topic.bgColor"
         @click="openCurtain(topic.id)"
       >
@@ -115,11 +116,23 @@ const remainingTopics = computed(() => {
   return topics.slice(selectedIndex + 1)
 })
 
-function openCurtain(topicId) {
-  // Set the selected topic
-  selectedTopicId.value = topicId
+// Calculate dynamic heights
+const imageHeight = computed(() => '50vh') // Image div is always 1/2 of the screen height
+const topicHeight = computed(() => '16.67vh') // Each topic takes 1/6 of screen height (100/6)
 
-  // Set content behind the curtain immediately
+const topCurtainHeight = computed(() => {
+  const baseHeight = 50 // Image div height in vh
+  const additionalHeight = topCurtainTopics.value.length * (100 / 6) // Add 1/6 for each topic
+  return `${baseHeight + additionalHeight}vh`
+})
+
+const bottomCurtainHeight = computed(() => {
+  const remainingHeight = remainingTopics.value.length * (100 / 6) // 1/6 for each remaining topic
+  return `${remainingHeight}vh`
+})
+
+function openCurtain(topicId) {
+  selectedTopicId.value = topicId
   if (topicId === 'foreword') {
     activeComponent.value = Foreword
   } else {
@@ -128,22 +141,16 @@ function openCurtain(topicId) {
       activeComponent.value = topic.component
     }
   }
-
-  // Open curtain
   isCurtainOpen.value = true
 }
 
 function closeCurtain() {
-  // Close the curtain
   isCurtainOpen.value = false
-
-  // After curtain closes (match animation duration), remove content
   setTimeout(() => {
     activeComponent.value = null
-    selectedTopicId.value = null // Reset selected topic
-  }, 1200) // matches transition duration
+    selectedTopicId.value = null
+  }, 1200)
 }
 
-// Set default topic on page load
 selectedTopicId.value = 'foreword'
 </script>
