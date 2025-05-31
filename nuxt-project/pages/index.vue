@@ -71,10 +71,10 @@
 
 <script setup>
 import { ref, computed } from 'vue'
-import Foreword from '~/components/Foreword.vue'
-import CambodiaTrip from '~/components/CambodiaTrip.vue'
-import LifeView from '~/components/LifeView.vue'
-import Memory from '~/components/Memory.vue'
+import Foreword from '~/pages/contents/Foreword.vue'
+import CambodiaTrip from '~/pages/contents/CambodiaTrip.vue'
+import LifeView from '~/pages/contents/LifeView.vue'
+import Memory from '~/pages/contents/Memory.vue'
 
 // Define topics (excluding the image div, which is handled separately)
 const topics = [
