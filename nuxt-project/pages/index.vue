@@ -23,6 +23,7 @@
             Cuộc sống trong đôi mắt này <br />
             Có vui có buồn có cả mây bay
           </p>
+          <button class="btn bg-[#f2d08d]">Xem thêm</button>
         </div>
       </div>
 
@@ -30,12 +31,12 @@
       <div
         v-for="topic in topCurtainTopics"
         :key="topic.id"
-        class="flex items-center justify-center cursor-pointer"
+        class="flex items-center justify-start cursor-pointer transition duration-300 hover:brightness-95 hover:scale-[1.04]"
         :style="{ height: topicHeight }"
         :class="topic.bgColor"
         @click="openCurtain(topic.id)"
       >
-        <p class="text-3xl font-serif tracking-wide">{{ topic.title }}</p>
+        <p class="text-3xl font-serif tracking-wide pl-28">{{ topic.title }}</p>
       </div>
     </div>
 
@@ -49,12 +50,12 @@
       <div
         v-for="topic in remainingTopics"
         :key="topic.id"
-        class="flex items-center justify-center cursor-pointer"
+        class="flex items-center justify-start cursor-pointer transition duration-300 hover:scale-[1.04]"
         :style="{ height: topicHeight }"
         :class="topic.bgColor"
         @click="openCurtain(topic.id)"
       >
-        <p class="text-3xl font-serif tracking-wide">{{ topic.title }}</p>
+        <p class="text-3xl font-serif tracking-wide pl-28">{{ topic.title }}</p>
       </div>
     </div>
 
