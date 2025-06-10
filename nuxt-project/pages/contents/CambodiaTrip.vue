@@ -1,5 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-20 bg-[#FFE8B9] flex flex-col items-center justify-center text-center">
+  <div class="fixed inset-0 z-20 bg-[url(/images/IMG_0502.jpg)] bg-cover bg-center bg-no-repeat flex flex-col items-center text-white text-center">
     <button
       @click="$emit('close')"
       class="absolute top-6 right-8 text-2xl font-bold text-gray-600 hover:text-black transition"

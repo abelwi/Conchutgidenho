@@ -23,7 +23,7 @@
             Cuộc sống trong đôi mắt này <br />
             Có vui có buồn có cả mây bay
           </p>
-          <button class="btn bg-[#f2d08d]">Xem thêm</button>
+          <!-- <button class="btn bg-[#f2d08d]">Xem thêm</button> -->
         </div>
       </div>
 
