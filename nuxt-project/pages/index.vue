@@ -1,8 +1,18 @@
 <template>
   <div class="h-screen flex flex-col overflow-hidden relative">
-    <!-- Content always rendered behind -->
-    <div class="absolute inset-0 z-0">
-      <component :is="activeComponent" v-if="activeComponent" />
+    <!-- Scrollable content rendered behind -->
+    <div
+      ref="scrollContainer"
+      class="absolute inset-0 z-0 overflow-y-scroll snap-y snap-mandatory"
+    >
+      <section
+        v-for="(section, index) in allTopics"
+        :key="section.id"
+        :ref="el => sectionRefs[section.id] = el"
+        class="h-screen snap-start"
+      >
+        <component :is="section.component" />
+      </section>
     </div>
 
     <!-- Top Curtain (image div + clicked topic + topics above it) -->
@@ -23,7 +33,6 @@
             Cuộc sống trong đôi mắt này <br />
             Có vui có buồn có cả mây bay
           </p>
-          <!-- <button class="btn bg-[#f2d08d]">Xem thêm</button> -->
         </div>
       </div>
 
@@ -59,7 +68,7 @@
       </div>
     </div>
 
-    <!-- Close button, only when curtain is open -->
+    <!-- Close button -->
     <button
       v-if="isCurtainOpen"
       @click="closeCurtain"
@@ -71,13 +80,12 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import Foreword from '~/pages/contents/Foreword.vue'
 import CambodiaTrip from '~/pages/contents/CambodiaTrip.vue'
 import LifeView from '~/pages/contents/LifeView.vue'
 import Memory from '~/pages/contents/Memory.vue'
 
-// Define topics (excluding the image div, which is handled separately)
 const topics = [
   {
     id: 'cambodia',
@@ -99,56 +107,74 @@ const topics = [
   },
 ]
 
+const allTopics = [
+  { id: 'foreword', component: Foreword },
+  ...topics,
+]
+
+const scrollContainer = ref(null)
+const sectionRefs = ref({})
+
 const isCurtainOpen = ref(false)
 const selectedTopicId = ref(null)
-const activeComponent = ref(null)
 
-// Compute topics for the top curtain (clicked topic + topics above it)
 const topCurtainTopics = computed(() => {
   if (!selectedTopicId.value || selectedTopicId.value === 'foreword') return []
   const selectedIndex = topics.findIndex((topic) => topic.id === selectedTopicId.value)
   return topics.slice(0, selectedIndex + 1)
 })
 
-// Compute remaining topics (topics below the clicked topic)
 const remainingTopics = computed(() => {
   if (!selectedTopicId.value || selectedTopicId.value === 'foreword') return topics
   const selectedIndex = topics.findIndex((topic) => topic.id === selectedTopicId.value)
   return topics.slice(selectedIndex + 1)
 })
 
-// Calculate dynamic heights
-const imageHeight = computed(() => '50vh') // Image div is always 1/2 of the screen height
-const topicHeight = computed(() => '16.67vh') // Each topic takes 1/6 of screen height (100/6)
+const imageHeight = computed(() => '50vh')
+const topicHeight = computed(() => '16.67vh')
 
 const topCurtainHeight = computed(() => {
-  const baseHeight = 50 // Image div height in vh
-  const additionalHeight = topCurtainTopics.value.length * (100 / 6) // Add 1/6 for each topic
+  const baseHeight = 50
+  const additionalHeight = topCurtainTopics.value.length * (100 / 6)
   return `${baseHeight + additionalHeight}vh`
 })
 
 const bottomCurtainHeight = computed(() => {
-  const remainingHeight = remainingTopics.value.length * (100 / 6) // 1/6 for each remaining topic
+  const remainingHeight = remainingTopics.value.length * (100 / 6)
   return `${remainingHeight}vh`
 })
 
-function openCurtain(topicId) {
+async function openCurtain(topicId) {
   selectedTopicId.value = topicId
-  if (topicId === 'foreword') {
-    activeComponent.value = Foreword
-  } else {
-    const topic = topics.find((t) => t.id === topicId)
-    if (topic) {
-      activeComponent.value = topic.component
-    }
-  }
   isCurtainOpen.value = true
+
+  await nextTick()
+
+  if (!hasOpenedCurtain.value) {
+    // Delay only the first time
+    setTimeout(() => {
+      scrollToTopic(topicId)
+      hasOpenedCurtain.value = true
+    }, 1200)
+  } else {
+    // Scroll instantly after curtain already open
+    scrollToTopic(topicId)
+  }
+}
+
+function scrollToTopic(topicId) {
+  const el = sectionRefs.value[topicId]
+  if (el && scrollContainer.value) {
+    scrollContainer.value.scrollTo({
+      top: el.offsetTop,
+      behavior: 'smooth',
+    })
+  }
 }
 
 function closeCurtain() {
   isCurtainOpen.value = false
   setTimeout(() => {
-    activeComponent.value = null
     selectedTopicId.value = null
   }, 1200)
 }

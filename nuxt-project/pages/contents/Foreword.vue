@@ -1,11 +1,5 @@
 <template>
-  <div class="fixed inset-0 z-20 bg-[#FFE8B9] flex flex-col text-center pb-5 pt-10 overflow-y-auto h-screen">
-    <button
-      @click="$emit('close')"
-      class="absolute top-6 right-8 text-2xl font-bold text-gray-600 hover:text-black transition"
-    >
-      ✕
-    </button>
+  <div class="h-screen flex flex-col items-center justify-center text-center bg-[#FFE8B9] relative px-6">
     <h2 class="text-5xl font-serif mb-6">Lời nói đầu</h2>
     <p class="text-lg font-serif text-left px-52 scroll-my-9">
       Mình 2k3 và mình không giống như hầu hết các bạn cùng trang lứa là theo hết 4 năm đại học.
@@ -39,6 +33,13 @@
       <br>
       Đó là sơ sơ về mình^^ có thể cậu đã biết hoặc chưa! Chúc cậu một ngày tốt lành nhé! ^^ 
     </p>
+
+    <button
+      @click="$emit('close')"
+      class="absolute top-6 right-8 text-2xl font-bold text-gray-600 hover:text-black transition"
+    >
+      ✕
+    </button>
   </div>
 </template>
 
