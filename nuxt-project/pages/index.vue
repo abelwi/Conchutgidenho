@@ -146,20 +146,23 @@ const bottomCurtainHeight = computed(() => {
 
 async function openCurtain(topicId) {
   selectedTopicId.value = topicId
-  isCurtainOpen.value = true
-
   await nextTick()
+  scrollToTopic(topicId)
+  isCurtainOpen.value = true
+}
 
-  if (!hasOpenedCurtain.value) {
-    // Delay only the first time
-    setTimeout(() => {
-      scrollToTopic(topicId)
-      hasOpenedCurtain.value = true
-    }, 1200)
-  } else {
-    // Scroll instantly after curtain already open
-    scrollToTopic(topicId)
-  }
+function closeCurtain() {
+  isCurtainOpen.value = false
+
+  // Detect current scroll position and update the selected topic
+  const scrollTop = scrollContainer.value?.scrollTop || 0
+  const currentId = Object.entries(sectionRefs.value).reduce((closestId, [id, el]) => {
+    const distance = Math.abs(el.offsetTop - scrollTop)
+    const closestDistance = Math.abs(sectionRefs.value[closestId]?.offsetTop - scrollTop)
+    return distance < closestDistance ? id : closestId
+  }, allTopics[0].id)
+
+  selectedTopicId.value = currentId
 }
 
 function scrollToTopic(topicId) {
@@ -167,16 +170,9 @@ function scrollToTopic(topicId) {
   if (el && scrollContainer.value) {
     scrollContainer.value.scrollTo({
       top: el.offsetTop,
-      behavior: 'smooth',
+      behavior: 'auto', // instantly go there
     })
   }
-}
-
-function closeCurtain() {
-  isCurtainOpen.value = false
-  setTimeout(() => {
-    selectedTopicId.value = null
-  }, 1200)
 }
 
 selectedTopicId.value = 'foreword'

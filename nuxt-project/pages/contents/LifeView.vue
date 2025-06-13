@@ -6,7 +6,7 @@
     <!-- Optional close button if needed -->
     <button
       @click="$emit('close')"
-      class="absolute top-6 right-8 text-2xl font-bold text-gray-600 hover:text-black transition"
+      class="fixed top-6 right-8 text-2xl font-bold text-gray-600 hover:text-black transition"
     >
       ✕
     </button>

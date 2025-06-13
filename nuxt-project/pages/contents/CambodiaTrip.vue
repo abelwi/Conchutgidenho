@@ -4,7 +4,7 @@
     <p class="text-lg font-mono italic">Hành trình khám phá đất nước Chùa Tháp 🛕</p>
     <button
       @click="$emit('close')"
-      class="absolute top-6 right-8 text-2xl font-bold text-gray-600 hover:text-black transition"
+      class="fixed top-6 right-8 text-2xl font-bold text-gray-600 hover:text-black transition"
     >
       ✕
     </button>
