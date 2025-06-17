@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex justify-between bg-[#FFE8B9] relative px-5 py-5">
-    <div class="w-1/2 space-y-14 pl-32`">
+    <div class="w-1/2 space-y-14 pl-32">
       <h2 class="text-5xl font-serif">Cambodia Trip</h2>
       <p class="text-lg font-mono italic">Mục lục</p>
       <p>Phần ngoại chuyện: "Chút kinh nghiệm cho cậu nè!"</p>
