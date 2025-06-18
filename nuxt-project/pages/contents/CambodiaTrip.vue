@@ -1,6 +1,6 @@
 <template>
   <div class="h-screen flex justify-between bg-[#FFE8B9] relative px-5 py-5">
-    <div class="w-1/2 space-y-14 pl-32">
+    <div class="w-2/5 space-y-14 pl-20">
       <h2 class="text-5xl font-serif">Cambodia Trip</h2>
       <p class="text-lg font-mono italic">Mục lục</p>
       <p>Phần ngoại chuyện: "Chút kinh nghiệm cho cậu nè!"</p>
@@ -11,7 +11,7 @@
       <p>Phần 5: Mình nhớ nhà rồii :((</p>
       <p>Phần cuối: Những tiếc nuối còn sót lại...</p>
     </div>
-    <div class="w-1/2 py-16">
+    <div class="w-3/5 py-16">
       <img src="/public/images/IMG_0502.jpg" alt="Cambodia avatar" class="w-full h-full mt-6 rounded-lg shadow-lg" />
     </div>
     <button
