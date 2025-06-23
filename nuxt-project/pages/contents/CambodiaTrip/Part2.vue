@@ -1,6 +1,6 @@
 <template>
-    <div class="h-screen flex flex-col items-center justify-center text-center bg-[#FFE8B9] relative px-6">
-        <h3>Phần 2: Làng ChiPhat</h3>
+    <div class="prose prose-lg mx-auto text-justify px-6 py-20">
+        <h3 class="text-center pb-5 text-4xl">Phần 2: Làng ChiPhat</h3>
         <div>
             <p class="">
                 Buổi sáng hôm đó bọn mình xuất phát từ lúc 6h, có xe tuk tuk đến chở bọn mình ra bến xe.

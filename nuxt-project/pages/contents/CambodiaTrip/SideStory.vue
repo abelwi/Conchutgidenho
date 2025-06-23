@@ -1,6 +1,6 @@
 <template>
-    <div class="h-screen flex flex-col items-center justify-center text-center bg-[#FFE8B9] relative px-6">
-        <h3>Phần ngoại chuyện: "Tớ có chút kinh nghiệm cho cậu nè!"</h3>
+    <div class="prose prose-lg mx-auto text-justify px-6 py-20">
+        <h3 class="text-center pb-5 text-4xl">Phần ngoại chuyện: "Tớ có chút kinh nghiệm cho cậu nè!"</h3>
         <div>
             <p class="">
                 Bọn mình đi từ Đà Lạt - Tây Ninh vé xe là 350k/người. Từ Tây Ninh đi ra cửa khẩu Mộc Bài(33km)

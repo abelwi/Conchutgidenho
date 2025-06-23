@@ -1,6 +1,6 @@
 <template>
-    <div class="h-screen flex flex-col items-center justify-center text-center bg-[#FFE8B9] relative px-6">
-        <h3>Phần 5: Mình nhớ nhà rồi :((</h3>
+    <div class="prose prose-lg mx-auto text-justify px-6 py-20">
+        <h3 class="text-center pb-5 text-4xl">Phần 5: Mình nhớ nhà rồi :((</h3>
         <div>
             <p class="">
                 Mình từ trước giờ đi nhiều lắm, đi tùm lum cã, nhưng mình chưa bao giờ thấy nhớ nhà và muốn

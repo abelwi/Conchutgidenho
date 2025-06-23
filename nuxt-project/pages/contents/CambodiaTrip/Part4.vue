@@ -1,6 +1,6 @@
 <template>
-    <div class="h-screen flex flex-col items-center justify-center text-center bg-[#FFE8B9] relative px-6">
-        <h3>Phần 4: Mình thèm được ngắm biển...Thật là vuiii</h3>
+    <div class="prose prose-lg mx-auto text-justify px-6 py-20">
+        <h3 class="text-center pb-5 text-4xl">Phần 4: Mình thèm được ngắm biển...Thật là vuiii</h3>
         <div>
             <p class="">
                 Ra được đến đường quốc lộ thì phải giải quyết ngay một vẫn đề là làm sao để bắt được xe để đến Kok Rong

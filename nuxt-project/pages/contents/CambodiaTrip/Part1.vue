@@ -1,9 +1,9 @@
-<template><div class="h-screen flex flex-col items-c
-    enter justify-center text-center bg-[#FFE8B9] relative px-6">
-        <h3>Phần 1: Lần đầu được ra nước ngoài!</h3>
-        <div>
-            <p class="">
-                - ‘Đi Campuchia không Lam?’<br>
+<template>
+  <div class="prose prose-lg mx-auto text-justify px-6 py-20">
+    <h3 class="text-center pb-5 text-4xl">Phần 1: Lần đầu được ra nước ngoài!</h3>
+    <div>
+      <p class="">
+        - ‘Đi Campuchia không Lam?’<br>
                 - ‘Đi, đi chứ…’
             <br>
             <br>
