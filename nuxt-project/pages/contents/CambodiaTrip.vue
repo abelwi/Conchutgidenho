@@ -1,10 +1,10 @@
 <template>
   <div ref="scrollContainer" class="flex flex-col h-full overflow-y-scroll snap-y snap-mandatory bg-[#FFE8B9]">
     <!-- Optional: Table of Contents (first screen) -->
-    <div class="snap-start flex justify-between px-10">
+    <div class="snap-start flex justify-between px-10 space-x-4">
       <div class="w-1/3 pt-10 space-y-10">
         <h2 class="text-4xl font-serif mb-8">Cambodia Trip</h2>
-        <ul class="text-lg font-mono underline space-y-14">
+        <ul class="font-mono underline space-y-14">
           <li
             v-for="section in sectionOrder"
             :key="section.id"
@@ -17,8 +17,8 @@
       </div>
        <!-- Full image section (optional) -->
       <section class="snap-start min-h-screen flex items-center justify-center w-2/3">
-        <img src="/public/images/IMG_0502.jpg" alt="Cambodia avatar" class="max-w-full max-h-screen rounded-lg shadow-lg object-contain" />
-      </section>``
+        <img src="/public/images/14C61CD2-B829-47CD-909C-BD43A3B123C2.JPG" alt="Cambodia avatar" class="max-w-full max-h-screen rounded-lg shadow-lg object-contain" />
+      </section>
     </div>
 
     <!-- Content sections -->
