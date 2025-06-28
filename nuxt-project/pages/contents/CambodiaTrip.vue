@@ -61,7 +61,7 @@ const sectionOrder = [
   { id: 'side', title: 'Phần ngoại chuyện', component: SideStory },
   { id: 'part1', title: 'Phần 1: Lần đầu được ra nước ngoài.', component: Part1 },
   { id: 'part2', title: 'Phần 2: Làng Chiphat', component: Part2 },
-  { id: 'part3', title: 'Phần 3: Cambodian people don’t like Vietnamese people.', component: Part3 },
+  { id: 'part3', title: 'Phần 3: Cambodians don’t like Vietnamese.', component: Part3 },
   { id: 'part4', title: 'Phần 4: Mình thèm được ngắm biển...', component: Part4 },
   { id: 'part5', title: 'Phần 5: Mình nhớ nhà rồi :(', component: Part5 },
   { id: 'last', title: 'Phần cuối: Những tiếc nuối còn sót lại...', component: LastPart },

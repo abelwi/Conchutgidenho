@@ -1,6 +1,6 @@
 <template>
     <div class="prose prose-lg mx-auto text-justify px-6 py-20">
-        <h3 class="text-center pb-5 text-4xl">Phần 3: Cambodian people don't like Vietnamese people</h3>
+        <h3 class="text-center pb-5 text-4xl">Phần 3: Cambodians don't like Vietnamese</h3>
         <div>
             <p class="">
                 Chuyện phải kể sau buổi bọn mình đi cắm trại trong rừng, lúc về thì bọn mình có ghé một quán nước mía 
